@@ -5,10 +5,20 @@ pipeline {
             }
       }
     stages {
+        stage('Clean Up'){
+            steps {
+                deleteDir()
+            }
+        }
+        stage('Clone Repo'){
+            steps {
+                sh 'git clone https://github.com/rnemeth1980/ci_cd_training.git'
+            }
+        }
         stage('Build') {
             steps {
-                echo "Building.."
-                dir("ci_cd_training"){
+                echo 'Building..'
+                dir('ci_cd_training'){
                     sh 'ls -ltr'
                     sh 'python3 hello_world.py'
                 }
