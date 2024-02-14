@@ -1,0 +1,18 @@
+pipeline {
+    agent { 
+        node {
+            label 'docker-agent-python'
+            }
+      }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+                dir("ci_cd_training"){
+                    sh 'python3 hello_world.py'
+                }
+                
+            }
+        }
+    }
+}
